@@ -10,7 +10,7 @@ def get_empty_cell(board):
 
 
 def check_row(board, row, value):
-    return False if value in board[row] else True
+    return value not in board[row]
 
 
 def check_column(board, column, value):
