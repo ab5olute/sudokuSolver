@@ -1,5 +1,5 @@
 from copy import deepcopy
-from unittest import TestCase
+from unittest import TestCase, main
 
 from sudokuSolver import get_empty_cell, solve_sudoku, check_row, check_column, check_box
 
@@ -137,3 +137,7 @@ class TestSudokuSolver(TestCase):
         board = deepcopy(self.board_expert)
         solve_sudoku(board)
         self.assertEqual(self.board_expert_answer, board)
+
+
+if __name__ == '__main__':
+    main()
