@@ -6,7 +6,7 @@ from sudokuSolver import get_empty_cell, solve_sudoku, check_row, check_column, 
 
 class TestSudokuSolver(TestCase):
     def setUp(self) -> None:
-        self.board_easy = [
+        self.board_easy: list[list[int]] = [
             [7, 0, 8, 5, 0, 6, 9, 2, 1],
             [3, 0, 9, 0, 0, 0, 4, 0, 0],
             [6, 0, 1, 8, 9, 4, 0, 3, 5],
@@ -17,7 +17,7 @@ class TestSudokuSolver(TestCase):
             [0, 0, 6, 0, 0, 0, 0, 5, 7],
             [0, 0, 0, 4, 5, 0, 6, 0, 2],
         ]
-        self.board_easy_answer = [
+        self.board_easy_answer: list[list[int]] = [
             [7, 4, 8, 5, 3, 6, 9, 2, 1],
             [3, 5, 9, 7, 2, 1, 4, 8, 6],
             [6, 2, 1, 8, 9, 4, 7, 3, 5],
@@ -29,7 +29,7 @@ class TestSudokuSolver(TestCase):
             [1, 8, 7, 4, 5, 3, 6, 9, 2]
         ]
 
-        self.board_medium = [
+        self.board_medium: list[list[int]] = [
             [0, 2, 0, 0, 0, 0, 0, 0, 3],
             [6, 0, 0, 0, 3, 0, 0, 5, 7],
             [0, 0, 0, 2, 7, 0, 0, 8, 4],
@@ -99,7 +99,7 @@ class TestSudokuSolver(TestCase):
         ]
 
     def test_get_empty_cell(self):
-        empty_cell = (0, 1)
+        empty_cell: tuple[int, int] = (0, 1)
         self.assertEqual(empty_cell, get_empty_cell(self.board_easy))
 
     def test_check_row(self):
@@ -119,22 +119,22 @@ class TestSudokuSolver(TestCase):
         self.assertTrue(check_box(self.board_easy, 1, 1, 5))
 
     def test_solve_easy(self):
-        board = deepcopy(self.board_easy)
+        board: list[list[int]] = deepcopy(self.board_easy)
         solve_sudoku(board)
         self.assertEqual(self.board_easy_answer, board)
 
     def test_solve_medium(self):
-        board = deepcopy(self.board_medium)
+        board: list[list[int]] = deepcopy(self.board_medium)
         solve_sudoku(board)
         self.assertEqual(self.board_medium_answer, board)
 
     def test_solve_hard(self):
-        board = deepcopy(self.board_hard)
+        board: list[list[int]] = deepcopy(self.board_hard)
         solve_sudoku(board)
         self.assertEqual(self.board_hard_answer, board)
 
     def test_solve_expert(self):
-        board = deepcopy(self.board_expert)
+        board: list[list[int]] = deepcopy(self.board_expert)
         solve_sudoku(board)
         self.assertEqual(self.board_expert_answer, board)
 
