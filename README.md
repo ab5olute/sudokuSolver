@@ -23,7 +23,6 @@ Backtracking Sudoku Solver with Python
  ```
 ```python
 >>> solve_sudoku(sudoku)
- ```
 True
  ```
 ```python
