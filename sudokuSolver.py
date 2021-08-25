@@ -1,5 +1,6 @@
 from itertools import product
-from typing import Optional
+from pathlib import Path
+from typing import Optional, Union
 
 
 def get_empty_cell(board: list[list[int]]) -> tuple[Optional[int], Optional[int]]:
@@ -58,3 +59,27 @@ def solve_sudoku(board: list[list[int]]) -> bool:
         board[row][column] = 0
 
     return False
+
+
+def read_sudoku(path: Union[str, Path]) -> list[list[int]]:
+    path: Path = Path(path)
+
+    board: list[list[int]] = []
+
+    with path.open() as file:
+        for line in file:
+            board.append(list(map(int, filter(str.isdigit, line))))
+
+    return board
+
+
+def display(board: list[list[int]]) -> None:
+    for i, row in enumerate(board, 1):
+        for j, e in enumerate(row, 1):
+            print(f' {e} ', end='')
+            if j % 3 == 0 and j != len(row):
+                print('|', end='')
+        if i % 3 == 0 and i != len(row):
+            print('\n---------+---------+---------')
+        else:
+            print()

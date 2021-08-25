@@ -1,7 +1,8 @@
+import os
 from copy import deepcopy
 from unittest import TestCase, main
 
-from sudokuSolver import get_empty_cell, solve_sudoku, check_row, check_column, check_box
+from sudokuSolver import get_empty_cell, solve_sudoku, check_row, check_column, check_box, read_sudoku
 
 
 class TestSudokuSolver(TestCase):
@@ -137,6 +138,22 @@ class TestSudokuSolver(TestCase):
         board: list[list[int]] = deepcopy(self.board_expert)
         solve_sudoku(board)
         self.assertEqual(self.board_expert_answer, board)
+
+    def test_read_sudoku(self):
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        path: str = 'board_example.txt'
+        conf_path: str = os.path.join(dir_path, path)
+
+        expected_board: list[list[int]] = [[5, 3, 0, 0, 7, 0, 0, 0, 0],
+                                           [6, 0, 0, 1, 9, 5, 0, 0, 0],
+                                           [0, 9, 8, 0, 0, 0, 0, 6, 0],
+                                           [8, 0, 0, 0, 6, 0, 0, 0, 3],
+                                           [4, 0, 0, 8, 0, 3, 0, 0, 1],
+                                           [7, 0, 0, 0, 2, 0, 0, 0, 6],
+                                           [0, 6, 0, 0, 0, 0, 2, 8, 0],
+                                           [0, 0, 0, 4, 1, 9, 0, 0, 5],
+                                           [0, 0, 0, 0, 8, 0, 0, 7, 9]]
+        self.assertEqual(read_sudoku(conf_path), expected_board)
 
 
 if __name__ == '__main__':
